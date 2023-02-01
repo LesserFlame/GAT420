@@ -18,7 +18,17 @@ public class Movement : MonoBehaviour
         acceleration += force;
     }
 
-    void LateUpdate()
+	public void MoveTowards(Vector3 target)
+	{
+		Vector3 direction = (target - transform.position).normalized;
+		ApplyForce(direction * maxForce);
+	}
+    public void Stop()
+    {
+        velocity = Vector3.zero;
+    }
+
+	void LateUpdate()
     {
         velocity += acceleration * Time.deltaTime;
         velocity = Utilities.ClampMagnitude(velocity, minSpeed, maxSpeed);

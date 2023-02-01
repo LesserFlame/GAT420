@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2b4f24b6b2f61a4ba56f4cdd4f369a5, type: 3}
+  m_Name: AutonomousAgentData02
+  m_EditorClassIdentifier: 
+  wanderDistance: 4
+  wanderRadius: 4
+  wanderDisplacement: 4
+  separationRadius: 5.2
+  seekWeight: 0
+  fleeWeight: 2.89
+  cohesionWeight: 1.46
+  separationWeight: 1
+  alignmentWeight: 0.78
+  obstacleWeight: 5
+  showSeekFleeLines: 0
+  showFlockLines: 0

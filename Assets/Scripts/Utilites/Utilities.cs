@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Utilities
@@ -23,5 +24,41 @@ public class Utilities
     public static Vector3 ClampMagnitude(Vector3 v, float min, float max)
     {
         return v.normalized * Mathf.Clamp(v.magnitude, min, max);
+    }
+
+	public static Vector3[] GetDirectionsInCircle(int num, float angle)
+	{
+		List<Vector3> result = new List<Vector3>();
+
+		// if odd number, set first direction as forward (0, 0, 1)
+		if (num % 2 == 1) result.Add(Vector3.forward);
+
+		// compute the angle between rays
+		float angleOffset = (angle * 2) / num;
+		// add the +/- directions around the circle
+		for (int i = 1; i <= num / 2; i++)
+		{
+			float modifier = (i == 1 && num % 2 == 0) ? 0.65f : 1;
+			result.Add(Quaternion.AngleAxis(+angleOffset * i * modifier, Vector3.up) * Vector3.forward);
+			result.Add(Quaternion.AngleAxis(-angleOffset * i * modifier, Vector3.up) * Vector3.forward);
+		}
+
+		return result.ToArray();
+	}
+	public static GameObject FindClosestObject(Vector3 position, GameObject[] gameObjects)
+    {
+        GameObject closestObject = null;
+        float shortestDistance = 100;
+        foreach(var gameObject in gameObjects) 
+        {
+            float tempDistance = Vector3.Distance(position, gameObject.transform.position);
+
+			if (tempDistance < shortestDistance)
+            {
+                closestObject = gameObject;
+                shortestDistance = tempDistance;
+            }
+        }
+        return closestObject;
     }
 }
